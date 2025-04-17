@@ -105,7 +105,7 @@ if(RUN){
                                         phi_lb = 0.005, phi_ub = 0.005),
                           nngp.control = list(n.neighbors = 15, ord = o),
                           nburn = 1000, nsave = 5000)
-  #saveRDS(fit_cobin2, file = "fit_cobin2_n950.rds")
+  #saveRDS(fit_cobin2, file = "fit_cobin2_n949.rds")
   set.seed(111)
   fit_cobin3 = spcobinreg(MMI_BENT ~ agkffact_logstd + bfi_logstd +
                             cbnf_logstd + conif_logstd +
@@ -118,7 +118,7 @@ if(RUN){
                                         phi_lb = 0.005, phi_ub = 0.005),
                           nngp.control = list(n.neighbors = 15, ord = o),
                           nburn = 1000, nsave = 5000)
-  #saveRDS(fit_cobin3, file = "fit_cobin3_n950.rds")
+  #saveRDS(fit_cobin3, file = "fit_cobin3_n949.rds")
 }else{
   fit_cobin1 = readRDS("fit_cobin1_n949.rds")
   fit_cobin2 = readRDS("fit_cobin2_n949.rds")
