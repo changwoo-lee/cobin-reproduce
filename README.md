@@ -53,7 +53,7 @@ rho02_n500
 - `Sec5_simul2/[scenario]/runmicobin_[scenario]`: code for running
   spatial micobin regression.
 
-## Codes for benthic macroinvertibrate multimetric index (MMI) analysis
+## Codes for reproducing benthic macroinvertibrate multimetric index (MMI) analysis
 
 ### Data preparation, exploratory data analysis
 
@@ -76,12 +76,12 @@ rho02_n500
 - `Sec6_mmicasestudy/results_supp_n950`: folder containing MMI data
   analysis of 950 lakes (only micobin regression) for sensitivity
   analysis
-- `Sec6_mmicasestudy/fig_prediction.R`: code for reproducing figure 4
-  (quantile residual)
+- `Sec6_mmicasestudy/fig_prediction.R`: code for reproducing figure 3
+  (prediction)
 - `Sec6_mmicasestudy/fig_qresiduals.R`: code for reproducing figure 4
   (quantile residual)
 
-## Code for reproducing other figures
+## Codes for reproducing other figures
 
 - Figure 2 (density of cobin and micobin):
   - `others/density.R`
