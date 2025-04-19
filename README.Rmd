@@ -20,10 +20,6 @@ Code to reproduce figures, simulation results, and case study results from the p
 
 > Anonymous authors (2025). Scalable and robust regression models for continuous proportional data. [submitted]
 
-<!--
-> Lee, C. J., Dahl, B. K., Ovaskainen, O., & Dunson, D. B. (2025). Scalable and robust regression models for continuous proportional data. [submitted]
--->
-
 ## Prerequisites
 
 [to be added very soon after anonymizing]
@@ -35,6 +31,20 @@ Download `cobin_1.0.0.0.tar.gz` and install cobin R package from the source usin
 install.packages("path_to_downloaded_file/cobin_1.0.0.0.tar.gz", repos = NULL, type="source")
 ```
 
+Test if the package is installed correctly, e.g. Kolmogorov-Gamma sampler:
+```{r, message = F, warning = F}
+library(microbenchmark)
+library(BayesLogit)
+library(cobin)
+nsample = 1e6 # million sample
+microbenchmark(
+  BayesLogit::rpg(nsample, 1, 2), # Polya-Gamma sampler
+  cobin::rkgcpp(nsample, 1, 2) # Kolmogorov-Gamma sampler
+)
+
+```
+
+
 ## Codes for reproducing simulation results
 
 ### Simulation 1: consistency under model misspecification
@@ -43,7 +53,7 @@ install.packages("path_to_downloaded_file/cobin_1.0.0.0.tar.gz", repos = NULL, t
 - `Sec5_simul1/datagen_consistency.R`: code for synthetic data generation. 
 - `Sec5_simul1/runsim_consistency.R`: code for running simulation.
 
-### Simulation 2: scalablity and robustness using spatial regression under model misspecificaton
+### Simulation 2: scalablity and robustness using spatial regression under model misspecification
 
 There are total 4 scenarios: rho01_n250, rho01_n500, rho02_n250, rho02_n500
 

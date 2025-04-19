@@ -12,10 +12,6 @@ from the paper
 > Anonymous authors (2025). Scalable and robust regression models for
 > continuous proportional data. \[submitted\]
 
-<!--
-> Lee, C. J., Dahl, B. K., Ovaskainen, O., & Dunson, D. B. (2025). Scalable and robust regression models for continuous proportional data. [submitted]
--->
-
 ## Prerequisites
 
 \[to be added very soon after anonymizing\] The R package `cobin`
@@ -28,6 +24,27 @@ the source using the following command in R:
 install.packages("path_to_downloaded_file/cobin_1.0.0.0.tar.gz", repos = NULL, type="source")
 ```
 
+Test if the package is installed correctly, e.g. Kolmogorov-Gamma
+sampler:
+
+``` r
+library(microbenchmark)
+library(BayesLogit)
+library(cobin)
+nsample = 1e6 # million sample
+microbenchmark(
+  BayesLogit::rpg(nsample, 1, 2), # Polya-Gamma sampler
+  cobin::rkgcpp(nsample, 1, 2) # Kolmogorov-Gamma sampler
+)
+#> Unit: milliseconds
+#>                            expr      min       lq     mean   median       uq
+#>  BayesLogit::rpg(nsample, 1, 2) 208.4826 257.4689 263.7239 260.7093 267.7383
+#>    cobin::rkgcpp(nsample, 1, 2) 509.6457 517.1453 525.8275 520.9337 529.2793
+#>       max neval
+#>  337.4130   100
+#>  594.6312   100
+```
+
 ## Codes for reproducing simulation results
 
 ### Simulation 1: consistency under model misspecification
@@ -38,7 +55,7 @@ install.packages("path_to_downloaded_file/cobin_1.0.0.0.tar.gz", repos = NULL, t
   generation.
 - `Sec5_simul1/runsim_consistency.R`: code for running simulation.
 
-### Simulation 2: scalablity and robustness using spatial regression under model misspecificaton
+### Simulation 2: scalablity and robustness using spatial regression under model misspecification
 
 There are total 4 scenarios: rho01_n250, rho01_n500, rho02_n250,
 rho02_n500
