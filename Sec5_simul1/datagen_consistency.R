@@ -50,6 +50,7 @@ SAVE = TRUE
 xsd = 3
 
 n = 100
+nsim = 1000 
 dataall = list()
 for(isim in 1:nsim){
   set.seed(isim+n*1000)

@@ -1,12 +1,18 @@
 
 rm(list = ls())
-slurm <- TRUE
-if(slurm){
-  slurm_id <- as.integer(Sys.getenv('SLURM_ARRAY_TASK_ID'))
-} else{
-  slurm_id <- 0
 
-}
+# slurm_id corresponds to 1, 2, ..., 100 for each simulation
+#
+# slurm <- TRUE
+# if(slurm){
+#   slurm_id <- as.integer(Sys.getenv('SLURM_ARRAY_TASK_ID'))
+# } else{
+#   slurm_id <- 0
+# 
+# }
+
+# manual setting of slurm_id for this example (actual sim was run with slurm job array)
+slurm_id = 1 
 
 # Load libraries
 library(brms)
