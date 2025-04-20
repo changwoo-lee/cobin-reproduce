@@ -10,22 +10,22 @@ Code to reproduce figures, simulation results, and case study results
 from the paper
 
 > Anonymous authors (2025). Scalable and robust regression models for
-> continuous proportional data. \[submitted\]
+> continuous proportional data.
 
 ## Prerequisites
 
-\[to be added very soon after anonymizing\] The R package `cobin`
-contains all necessary functions for cobin and micobin regression
-models. Download `cobin_1.0.0.0.tar.gz` and install cobin R package from
-the source using the following command in R:
+The R package `cobin` contains all necessary functions for cobin and
+micobin regression models. Download `cobin_1.0.0.1.tar.gz` and install
+cobin R package from the source using the following command in R:
 
 ``` r
 # install.packages("devtools")
-install.packages("path_to_downloaded_file/cobin_1.0.0.0.tar.gz", repos = NULL, type="source")
+install.packages("path_to_downloaded_file/cobin_1.0.0.1.tar.gz", repos = NULL, type="source")
 ```
 
-Test if the package is installed correctly, e.g. Kolmogorov-Gamma
-sampler:
+See cobin_1.0.0.1.pdf for the package documentation (anonymized) or type
+`?(function_name)` for details. Test if the package is installed
+correctly, e.g. Kolmogorov-Gamma sampler:
 
 ``` r
 library(microbenchmark)
