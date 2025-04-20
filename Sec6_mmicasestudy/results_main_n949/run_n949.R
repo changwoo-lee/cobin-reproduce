@@ -92,7 +92,7 @@ if(RUN){
                                         phi_lb = 0.005, phi_ub = 0.005),
                           nngp.control = list(n.neighbors = 15, ord = o),
                           nburn = 1000, nsave = 5000)
-  #saveRDS(fit_cobin1, file = "fit_cobin1_n949.rds")
+  saveRDS(fit_cobin1, file = "fit_cobin1_n949.rds")
   set.seed(11)
   fit_cobin2 = spcobinreg(MMI_BENT ~ agkffact_logstd + bfi_logstd +
                             cbnf_logstd + conif_logstd +
@@ -105,7 +105,7 @@ if(RUN){
                                         phi_lb = 0.005, phi_ub = 0.005),
                           nngp.control = list(n.neighbors = 15, ord = o),
                           nburn = 1000, nsave = 5000)
-  #saveRDS(fit_cobin2, file = "fit_cobin2_n949.rds")
+  saveRDS(fit_cobin2, file = "fit_cobin2_n949.rds")
   set.seed(111)
   fit_cobin3 = spcobinreg(MMI_BENT ~ agkffact_logstd + bfi_logstd +
                             cbnf_logstd + conif_logstd +
@@ -118,7 +118,7 @@ if(RUN){
                                         phi_lb = 0.005, phi_ub = 0.005),
                           nngp.control = list(n.neighbors = 15, ord = o),
                           nburn = 1000, nsave = 5000)
-  #saveRDS(fit_cobin3, file = "fit_cobin3_n949.rds")
+  saveRDS(fit_cobin3, file = "fit_cobin3_n949.rds")
 }else{
   fit_cobin1 = readRDS("fit_cobin1_n949.rds")
   fit_cobin2 = readRDS("fit_cobin2_n949.rds")
@@ -169,7 +169,7 @@ if(RUN){
                                             phi_lb = 0.005, phi_ub = 0.005),
                               nngp.control = list(n.neighbors = 15, ord = o),
                               nburn = 1000, nsave = 5000)
-  #saveRDS(fit_micobin1, file = "fit_micobin1_n949.rds")
+  saveRDS(fit_micobin1, file = "fit_micobin1_n949.rds")
   set.seed(22)
   fit_micobin2 = spmicobinreg(MMI_BENT ~ agkffact_logstd + bfi_logstd +
                                 cbnf_logstd + conif_logstd +
@@ -182,7 +182,7 @@ if(RUN){
                                             phi_lb = 0.005, phi_ub = 0.005),
                               nngp.control = list(n.neighbors = 15, ord = o),
                               nburn = 1000, nsave = 5000)
-  #saveRDS(fit_micobin2, file = "fit_micobin2_n949.rds")
+  saveRDS(fit_micobin2, file = "fit_micobin2_n949.rds")
   set.seed(222)
   fit_micobin3 = spmicobinreg(MMI_BENT ~ agkffact_logstd + bfi_logstd +
                                 cbnf_logstd + conif_logstd +
@@ -195,7 +195,7 @@ if(RUN){
                                             phi_lb = 0.005, phi_ub = 0.005),
                               nngp.control = list(n.neighbors = 15, ord = o),
                               nburn = 1000, nsave = 5000)
-  #saveRDS(fit_micobin3, file = "fit_micobin3_n949.rds")
+  saveRDS(fit_micobin3, file = "fit_micobin3_n949.rds")
 }else{
   fit_micobin1 = readRDS("fit_micobin1_n949.rds")
   fit_micobin2 = readRDS("fit_micobin2_n949.rds")
@@ -268,17 +268,17 @@ if(RUN){
                        data = stan_data,
                        chains = 1, seed = 3,
                        iter = nburn + nsave, warmup = nburn, thin = nthin)
-  #saveRDS(fit_beta1, file = "fit_beta1_n949.rds")
+  saveRDS(fit_beta1, file = "fit_beta1_n949.rds")
   fit_beta2 = rstan::stan(file = "betareg_spatial_NNGP_normal.stan",
                           data = stan_data,
                           chains = 1, seed = 33,
                           iter = nburn + nsave, warmup = nburn, thin = nthin)
-  #saveRDS(fit_beta2, file = "fit_beta2_n949.rds")
+  saveRDS(fit_beta2, file = "fit_beta2_n949.rds")
   fit_beta3 = rstan::stan(file = "betareg_spatial_NNGP_normal.stan",
                           data = stan_data,
                           chains = 1, seed = 333,
                           iter = nburn + nsave, warmup = nburn, thin = nthin)
-  #saveRDS(fit_beta3, file = "fit_beta3_n949.rds")
+  saveRDS(fit_beta3, file = "fit_beta3_n949.rds")
 }else{
   fit_beta1 = readRDS("fit_beta1_n949.rds")
   fit_beta2 = readRDS("fit_beta2_n949.rds")

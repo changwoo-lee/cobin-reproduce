@@ -63,8 +63,7 @@ x_sd = df %>% select(agkffact_log,
 
 # load previously fitted data
 # To reproduce, run "results_main_n949/run_n949.R" with spatial micobin regression 
-# where the output is saved at "fit_micobin1_n949.rds" (comment out the corresponding line and save the output)
-
+# where the output is saved at "fit_micobin1_n949.rds"
 fit_micobin1 = readRDS("results_main_n949/fit_micobin1_n949.rds")
 
 # load prediction data
@@ -118,7 +117,7 @@ str(Xnew)
 pred_micobin1 <- predict(fit_micobin1$spNNGPfit, 
                          X.0 = Xnew, 
                          coords.0 = cbind(df4$easting,df4$northing),
-                         sub.sample = list(start = 1, end = 5000, thin = 1))
+                         sub.sample = list(start = 1, end = fit_micobin1$nsave, thin = 1))
 
 
 ###################################################
