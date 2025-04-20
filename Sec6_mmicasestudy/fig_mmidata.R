@@ -2,10 +2,7 @@ rm(list = ls())
 
 library(ggplot2)
 library(maps)
-#install.packages("usmap")
 library(usmap)
-#library(data.table)
-library(ggsn) # for scale bar `scalebar`
 ##library(ggrepel) # if need to repel labels
 
 

@@ -60,7 +60,10 @@ x_sd = df %>% select(agkffact_log,
                      manure_log,
                      pestic1997_log,
                      urbmdhi_log) %>% summarise_all(sd)
-# load previously fitted ata
+
+# load previously fitted data
+# To reproduce, run "results_main_n949/run_n949.R" with spatial micobin regression 
+# where the output is saved at "fit_micobin1_n949.rds" (comment out the corresponding line and save the output)
 
 fit_micobin1 = readRDS("results_main_n949/fit_micobin1_n949.rds")
 
@@ -119,8 +122,6 @@ pred_micobin1 <- predict(fit_micobin1$spNNGPfit,
 
 
 ###################################################
-
-pred_micobin1 = readRDS("../real2/pred_micobin1.rds")
 
 transformed_coords4 <- sf::st_coordinates(usmap::usmap_transform(df4[,c("lon","lat")]))
 
