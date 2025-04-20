@@ -3,10 +3,10 @@ which corresponds to the manuscript
 "Scalable and robust regression models for continuous proportional data"
 by anonymous authors
 
-MMI data is compiled from three different sources (1,2,3)
+MMI data (1) mmi_lakecat.csv and (2) lakecat-over40000m2.csv are compiled from three different sources (1,2,3)
 which are altogether joined with COMID, the unique lake identifier 
 
-1. National Lakes Assessment 2017
+1. 2017 National Lakes Assessment
 
 Download data from https://www.epa.gov/national-aquatic-resource-surveys/data-national-aquatic-resource-surveys
 A. Download MMI data
