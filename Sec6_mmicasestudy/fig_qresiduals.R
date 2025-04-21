@@ -3,10 +3,6 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # data: n949
 df = read.csv("mmi_lakecat.csv")
 df = df[df$MMI_BENT != 0,]
-# also remove two rows with comid = 9201925, 22845861
-#excludeidx = which(df$comid %in% c(9201925, 22845861))
-#df[excludeidx,]
-#df = df[-excludeidx,]
 
 dim(df) # nrow = 949
 o =  order(df$easting)
@@ -125,13 +121,12 @@ abline(a=0,b=1)
 idx12_micobin = order(qnorm(micobin_qresid))[1:2]
 idx12_micobin
 
-# idx12 = idx12_beta
-# 
-# df[idx12,"comid"] # unique identifer
+idx12_beta # 147, 34
+idx12_cobin # 147, 34
+idx12_micobin # 147, 34
+idx12 = c(147,34)
+ # df[idx12,"comid"] # unique identifer
 # df[idx12,]
-# 
-# 
-# 
 library(ggplot2)
 
 n <- nrow(df)
