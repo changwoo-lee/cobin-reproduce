@@ -29,7 +29,7 @@ transformed data {
 parameters {
   vector[Kc] b;  // regression coefficients
   real Intercept;  // temporary intercept for centered predictors
-  real<lower=0> phi;  // precision parameter
+  real<lower=0, upper=76.3876> phi;  // precision parameter
   // vector<lower=0>[M_1] sd_1;  // group-level standard deviations
   // array[M_1] vector[N_1] z_1;  // standardized group-level effects
   vector[N] u;

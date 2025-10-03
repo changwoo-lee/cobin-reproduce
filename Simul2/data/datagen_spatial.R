@@ -102,7 +102,7 @@ for(isim in 1:nsim){
                                   ntest = 50, # number of testing point
                                   seed = isim + 5000)
 }
-saveRDS(out1, "data/betarec_rho02_n250.rds")
+saveRDS(out1, "betarec_rho02_n250.rds")
 
 out11 = list()
 for(isim in 1:nsim){
@@ -112,7 +112,7 @@ for(isim in 1:nsim){
                                   ntest = 100, # number of testing point
                                   seed = isim + 50000)
 }
-saveRDS(out11, "data/betarec_rho02_n500.rds")
+saveRDS(out11, "betarec_rho02_n500.rds")
 
 
 out2 = list()
@@ -123,7 +123,7 @@ for(isim in 1:nsim){
                                   ntest = 50, # number of testing point
                                   seed = isim + 10000)
 }
-saveRDS(out2, "data/betarec_rho01_n250.rds")
+saveRDS(out2, "betarec_rho01_n250.rds")
 
 
 
@@ -135,5 +135,5 @@ for(isim in 1:nsim){
                                   ntest = 100, # number of testing point, 50
                                   seed = isim + 100000)
 }
-saveRDS(out22, "data/betarec_rho01_n500.rds")
+saveRDS(out22, "betarec_rho01_n500.rds")
 

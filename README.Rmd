@@ -15,78 +15,95 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 <!-- badges: end -->
-
 Code to reproduce figures, simulation results, and case study results from the paper 
 
-> Lee, C. J., Dahl, B. K., Ovaskainen, O., Dunson, D. B. (2025). Scalable and robust regression models for continuous proportional data. arXiv preprint arXIV:2504.15269 https://arxiv.org/abs/2504.15269
+> Anonymous authors (2025). Scalable and robust regression models for continuous proportional data. 
 
 ## Prerequisites
 
 The R package `cobin` contains all necessary functions for cobin and micobin regression models. 
-Install cobin R package using the following command in R: 
+Download `cobin_1.0.0.1.tar.gz` and install cobin R package from the source using the following command in R: 
 
 ```{r, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("changwoo-lee/cobin")
+install.packages("path_to_downloaded_file/cobin_1.0.0.1.tar.gz", repos = NULL, type="source")
 ```
 
-See cobin_1.0.0.1.pdf for the package documentation or type `?(function_name)` for details. 
+See cobin_1.0.0.1.pdf for the package documentation (anonymized) or type `?(function_name)` for details.
 
 Test if the package is installed correctly, e.g. Kolmogorov-Gamma sampler:
 ```{r, message = F, warning = F}
-library(microbenchmark)
-library(BayesLogit)
 library(cobin)
-nsample = 1e6 # million sample
-microbenchmark(
-  BayesLogit::rpg(nsample, 1, 2), # Polya-Gamma sampler
-  cobin::rkgcpp(nsample, 1, 2) # Kolmogorov-Gamma sampler
-)
+# theoretical mean
+ekg = function(b, c){
+  if(c==0) b/12 else return( b*((c/2)*(1/tanh(c/2))-1)/(c^2)) 
+}
+
+ekg(1,2) # theoretical mean
+mean(cobin::rkgcpp(1000000, 1, 2)) # empirical mean
 
 ```
 
 
 ## Codes for reproducing simulation results
 
-### Simulation 1: consistency under model misspecification
+- `Simul1`: Codes for Simulation Study 1 (Robustness of MLE to model misspecification)
+- `Simul2`: Codes for Simulation Study 2 (Robustness and scalability under spatial regression models)
+- `Simul3`: Codes for Simulation Study 2 (Robustness to the presence of outliers)
+- `MMIanalysis`: Codes for benthic macroinvertebrate multimetric index (MMI) data analysis
+- `others`: Supplementary figures (density plots, link function comparisons)
 
-- `Sec5_simul1/betareg_cobit.R`: code for finding beta regression MLE with cobit link; derived from betareg package
-- `Sec5_simul1/datagen_consistency.R`: code for synthetic data generation. 
-- `Sec5_simul1/runsim_consistency.R`: code for running simulation.
+### Simulation 1: Robustness of MLE to model misspecification (Section 4.1)
 
-### Simulation 2: scalablity and robustness using spatial regression under model misspecification
+- `Simul1/data/`: folder for synthetic data and generation codes. 
+- `Simul1/figures/`: folder containing codes for reproducing figures (Figure S.2). 
+- `Simul1/betareg_cobit.R`: code for finding beta regression MLE with cobit link; derived from betareg package
+- `Simul1/runsim_consistency.R`: code for running simulation under the correct mean structure.
+- `Simul1/runsim_consistency_wrongmean.R`: code for running simulation under the wrong mean structure (See Supplementary Section S.5.1).
+
+### Simulation 2: Robustness and scalability under spatial regression models (Section 4.2)
 
 There are total 4 scenarios: rho01_n250, rho01_n500, rho02_n250, rho02_n500
 
-- `Sec5_simul2/betareg_spatial.stan`: code for spatial beta regression model with cobit link in Stan
-- `Sec5_simul2/datagen_spatial.R`: code for synthetic data generation. 
-- `Sec5_simul2/[scenario]/runbeta_[scenario]`: code for running spatial beta regression.
-- `Sec5_simul2/[scenario]/runcobin_[scenario]`: code for running spatial cobin regression.
-- `Sec5_simul2/[scenario]/runmicobin_[scenario]`: code for running spatial micobin regression.
+- `Simul2/betareg_spatial.stan`: code for spatial beta regression model with cobit link in Stan
+- `Simul2/data/`: folder for synthetic data and generation codes. 
+- `Simul2/[scenario]/runbeta_[scenario]`: code for running spatial beta regression.
+- `Simul2/[scenario]/runcobin_[scenario]`: code for running spatial cobin regression.
+- `Simul2/[scenario]/runmicobin_[scenario]`: code for running spatial micobin regression.
+- `Simul2/predict_linpred_cobit.R`: helper function for spatial prediction. 
 
 
-## Codes for reproducing benthic macroinvertibrate multimetric index (MMI) analysis
+### Simulation 3: Robustness to the presence of outliers (Section 4.3)
+
+- `Simul3/data/`: folder for synthetic data and generation codes. 
+- `Simul3/figures/`: folder containing codes for reproducing figures (Figure S.3). 
+- `Simul3/betareg_fixedeffect.stan`: code for beta regression model with cobit link in Stan
+- `Simul3/betarecreg_fixedeffect.stan`: code for beta rectangular regression model with cobit link in Stan
+- `Simul3/run_outliersim.R`: code for running outlier robustness simulation
+
+
+## Codes for reproducing benthic macroinvertibrate multimetric index (MMI) analysis (Section 5)
 
 ### Data preparation, exploratory data analysis 
 
-* `Sec6_mmicasestudy/mmi_lakecat_csv`: MMI and lake watershed covariate for 950 lakes 
-* `Sec6_mmicasestudy/lakecat-over40000m2.csv`: lake watershed covariate for 50k+ lakes for prediction
+* `MMIanalysis/mmi_lakecat_csv`: MMI and lake watershed covariate for 950 lakes 
+* `MMIanalysis/lakecat-over40000m2.csv`: lake watershed covariate for 50k+ lakes for prediction
   - See dataprocess_readme.txt for data collecting procedure from EPA website
-* `Sec6_mmicasestudy/fig_mmidata.R`: code for reproducing figure 1 (MMI data and urban cover)
+* `MMIanalysis/figures.R`: code for reproducing Figure 1 (MMI data and urban cover), Table 4 (Information of lakes with low MMI), Figure 3 (predicted MMI), Figure S.4 (quantile residuals), and more predicted MMI plots in supplementary
+* `MMIanalysis/make_tabe.R`: code for reproducing Table 5 and more results in supplementary
 
-### Data analysis and prediction 
+### Data analysis 
 
-* `Sec6_mmicasestudy/results_main_n949`: folder containing MMI data analysis of 949 lakes, excluding one lake with MMI = 0
-* `Sec6_mmicasestudy/results_supp_n947`: folder containing MMI data analysis of 947 lakes, excluding two additional lakes from 949 lakes for sensitivity analysis
-* `Sec6_mmicasestudy/results_supp_n950`: folder containing MMI data analysis of 950 lakes (only micobin regression) for sensitivity analysis
-* `Sec6_mmicasestudy/fig_prediction.R`: code for reproducing figure 3 (prediction)
-* `Sec6_mmicasestudy/fig_qresiduals.R`: code for reproducing figure 4 (quantile residual)
+* `MMIanalysis/n949`: folder containing MMI data analysis of 949 lakes, excluding one lake with MMI = 0
+* `MMIanalysis/n947`: folder containing MMI data analysis of 947 lakes, excluding two additional lakes from 949 lakes
+* `MMIanalysis/n950`: folder containing MMI data analysis of 950 lakes (only beta rectangular and micobin regression)
 
 
-## Codes for reproducing other figures
+## Codes for reproducing other results
 
 * Figure 2 (density of cobin and micobin):
-  - `others/density.R`
-* Figure 2 (link function and variance function comparison):
-  - `others/linkft.R`
-  
+  - `others/fig_density.R`
+* Figure S.1 (link function and variance function comparison):
+  - `others/fig_linkft.R`
+* Figure S.7 and S.8 (mixing under boundary-concentrated setting):
+  - `others/boundary_concentrate.R`
